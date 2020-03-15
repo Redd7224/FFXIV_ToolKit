@@ -1,14 +1,21 @@
 #pragma once
 #include<string>
+#include<sstream>
+#include<vector>
+
+using namespace std;
 
 class FileProcessor
 {
 public:
 	bool ItWorked();
 
-	std::string GetData();
+	string GetData();
 	void SetData(std::string);
 
+	string GetGear(int);
+
 private:
-	std::string data;
+	string data;
+	string gear[];
 };

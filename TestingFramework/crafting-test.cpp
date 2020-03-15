@@ -1,8 +1,10 @@
 #pragma once
 
 #include <gtest/gtest.h>
-#include <iostream>
+#include <string>
 #include "..\Crafting\FileProcessor.h"
+
+using namespace std;
 
 struct FileProcessorTest : testing::Test
 {
@@ -25,7 +27,18 @@ TEST_F(FileProcessorTest, BooleanCheck)
 
 TEST_F(FileProcessorTest, WhenGivenData_DataIsRead)
 {
-	std::string craftingData = "Straw Hat";
+	string craftingData = "Straw Hat";
 	fileProcessor->SetData(craftingData);
 	ASSERT_EQ(craftingData, fileProcessor->GetData());
+}
+
+TEST_F(FileProcessorTest, WhenGivenDataWithTwoItems_ItemsAreSeparated)
+{
+	string craftingData = "Straw Hat\nCap";
+	fileProcessor->SetData(craftingData);
+
+	string expectedResult[] = { "Straw Hat", "Cap" };
+
+	ASSERT_EQ(expectedResult[0], fileProcessor->GetGear(0));
+	ASSERT_EQ(expectedResult[1], fileProcessor->GetGear(1));
 }
