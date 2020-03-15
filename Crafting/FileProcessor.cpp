@@ -1,5 +1,4 @@
 #include "FileProcessor.h"
-#include <list>
 
 list<string> CreateListOfGear(string data);
 
@@ -18,7 +17,12 @@ void FileProcessor::SetData(string data)
 	this->data = data;
 }
 
-string FileProcessor::GetGear(int index)
+list<string> FileProcessor::GetGear()
+{
+	return CreateListOfGear(this->data);
+}
+
+string FileProcessor::GetGearAtIndex(int index)
 {
 	list<string> listOfGear = CreateListOfGear(this->data);
 

@@ -32,13 +32,20 @@ TEST_F(FileProcessorTest, WhenGivenData_DataIsRead)
 	ASSERT_EQ(craftingData, fileProcessor->GetData());
 }
 
-TEST_F(FileProcessorTest, WhenGivenDataWithTwoItems_ItemsAreSeparated)
+TEST_F(FileProcessorTest, WhenGivenMoreThanOneItem_DataIsSeparated)
+{
+	string craftingData = "Straw Hat\nCap";
+	fileProcessor->SetData(craftingData);
+	ASSERT_GT(fileProcessor->GetData().size(), 1);
+}
+
+TEST_F(FileProcessorTest, WhenGivenDataWithTwoItems_ItemsAreSeparated_AndRetrivedSeparately)
 {
 	string craftingData = "Straw Hat\nCap";
 	fileProcessor->SetData(craftingData);
 
 	string expectedResult[] = { "Straw Hat", "Cap" };
 
-	ASSERT_EQ(expectedResult[0], fileProcessor->GetGear(0));
-	ASSERT_EQ(expectedResult[1], fileProcessor->GetGear(1));
+	ASSERT_EQ(expectedResult[0], fileProcessor->GetGearAtIndex(0));
+	ASSERT_EQ(expectedResult[1], fileProcessor->GetGearAtIndex(1));
 }

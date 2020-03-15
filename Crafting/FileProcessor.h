@@ -2,6 +2,7 @@
 #include<string>
 #include<sstream>
 #include<vector>
+#include <list>
 
 using namespace std;
 
@@ -13,7 +14,8 @@ public:
 	string GetData();
 	void SetData(string);
 
-	string GetGear(int);
+	list<string> GetGear();
+	string GetGearAtIndex(int);
 
 private:
 	string data;
