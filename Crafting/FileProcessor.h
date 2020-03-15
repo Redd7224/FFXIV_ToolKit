@@ -11,11 +11,10 @@ public:
 	bool ItWorked();
 
 	string GetData();
-	void SetData(std::string);
+	void SetData(string);
 
 	string GetGear(int);
 
 private:
 	string data;
-	string gear[];
 };

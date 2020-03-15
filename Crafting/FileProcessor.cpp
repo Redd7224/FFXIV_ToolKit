@@ -1,6 +1,8 @@
 #include "FileProcessor.h"
 #include <list>
 
+list<string> CreateListOfGear(string data);
+
 bool FileProcessor::ItWorked()
 {
 	return true;
@@ -18,15 +20,9 @@ void FileProcessor::SetData(string data)
 
 string FileProcessor::GetGear(int index)
 {
-	stringstream unprocessedData(this->data);
-	string pieceOfGear;
-
-	list<string> listOfGear;
-	while (getline(unprocessedData, pieceOfGear, '\n'))
-		listOfGear.push_back(pieceOfGear);
+	list<string> listOfGear = CreateListOfGear(this->data);
 
 	vector<string> processedGear;
-
 	while (listOfGear.size() > 0)
 	{
 		string temp = listOfGear.front();
@@ -35,4 +31,16 @@ string FileProcessor::GetGear(int index)
 	}
 
 	return processedGear[index];
+}
+
+list<string> CreateListOfGear(string data)
+{
+	stringstream unprocessedData(data);
+	string pieceOfGear;
+
+	list<string> gearList;
+	while (getline(unprocessedData, pieceOfGear, '\n'))
+		gearList.push_back(pieceOfGear);
+
+	return gearList;
 }
