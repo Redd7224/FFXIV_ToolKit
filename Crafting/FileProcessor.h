@@ -1,13 +1,14 @@
 #pragma once
-#include <iostream>
+#include<string>
 
 class FileProcessor
 {
 public:
-	FileProcessor();
-	~FileProcessor();
 	bool ItWorked();
 
-private:
+	std::string GetData();
+	void SetData(std::string);
 
+private:
+	std::string data;
 };

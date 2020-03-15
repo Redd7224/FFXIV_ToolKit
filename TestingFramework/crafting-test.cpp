@@ -1,6 +1,7 @@
 #pragma once
 
 #include <gtest/gtest.h>
+#include <iostream>
 #include "..\Crafting\FileProcessor.h"
 
 struct FileProcessorTest : testing::Test
@@ -10,10 +11,21 @@ struct FileProcessorTest : testing::Test
 	{
 		fileProcessor = new FileProcessor();
 	}
+
+	~FileProcessorTest()
+	{
+		delete fileProcessor;
+	}
 };
 
 TEST_F(FileProcessorTest, BooleanCheck)
 {
-	bool test = fileProcessor->ItWorked();
-	ASSERT_TRUE(test);
+	ASSERT_TRUE(fileProcessor->ItWorked());
+}
+
+TEST_F(FileProcessorTest, WhenGivenData_DataIsRead)
+{
+	std::string craftingData = "Straw Hat";
+	fileProcessor->SetData(craftingData);
+	ASSERT_EQ(craftingData, fileProcessor->GetData());
 }

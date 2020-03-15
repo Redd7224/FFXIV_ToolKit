@@ -1,16 +1,16 @@
 #include "FileProcessor.h"
 
-FileProcessor::FileProcessor()
-{
-	//std::cout << ("It worked!");
-}
-
-FileProcessor::~FileProcessor()
-{
-
-}
-
 bool FileProcessor::ItWorked()
 {
 	return true;
+}
+
+std::string FileProcessor::GetData()
+{
+	return this->data;
+}
+
+void FileProcessor::SetData(std::string data)
+{
+	this->data = data;
 }
