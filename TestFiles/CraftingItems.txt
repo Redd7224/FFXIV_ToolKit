@@ -1,0 +1,63 @@
+Facet Hat of Crafting
+	3 Pliable Glass Fiber
+	2 Etheral Silk
+	1 Sea Swallow Leather
+	1 Sublime Solution
+	1 Agewood Aethersand
+
+Facet Coat of Crafting
+	4 Pliable Glass Fiber
+	3 Etheral Silk
+	1 Sea Swallow Leather
+	2 Sublime Solution
+	1 Agewood Aethersand
+
+Facet Gloves of Crafting
+	3 Pliable Glass Fiber
+	2 Chalicotherium Leather
+	1 Dwarven Cotten
+	1 Sublime Solution
+	1 Agedeep Aethersand
+
+Swallowskin Tool Belt
+	2 Sea Swallow Leather
+	1 Drawven Cotton Thread
+
+Face Trousers of Crafting
+	4 Pliable Glass Fiber
+	3 Etheral Silk
+	1 Sea Swallow Leather
+	2 Sublime Solution
+	1 Agedeep Aethersand
+
+Facet Boots of Crafting
+	3 Pliable Glass Fiber
+	2 Chalicotherium Leather
+	1 Dwarven Cotton
+	1 Sublime Solution
+	1 Ageflow Aethersand
+
+Dwarven Mythril Ear Cuffs
+	2 Dwarven Mythril Nugget
+	1 Dwarven Cotton
+
+Dwarven Mythril Choker
+	2 Dwarven Mythril Nugget
+	1 Dwarven Cotton
+	1 Iridescent Silk Thread
+
+Dwareven Mythril Bracelets
+	2 Dwarven Mythril Nugget
+	1 Dwarven Cotton
+	1 Iridescent Silk Thread
+
+Dwarven Mythril Ring
+	1 Dwarven Mythril Nugget
+	1 Dwarven Cotton
+	1 Iridescent Silk Thread
+
+Dwarven Mythril Ring
+	1 Dwarven Mythril Nugget
+	1 Dwarven Cotton
+	1 Iridescent Silk Thread
+

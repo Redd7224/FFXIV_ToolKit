@@ -49,3 +49,13 @@ TEST_F(FileProcessorTest, WhenGivenDataWithTwoItems_ItemsAreSeparated_AndRetrive
 	ASSERT_EQ(expectedResult[0], fileProcessor->GetGearAtIndex(0));
 	ASSERT_EQ(expectedResult[1], fileProcessor->GetGearAtIndex(1));
 }
+
+TEST_F(FileProcessorTest, WhenGivenFilePath_FileIsProcessed)
+{
+	string filePath = "..\\..\\TestFiles\\CraftingItems.txt";
+	
+	fileProcessor->SetFile(filePath);
+	fileProcessor->ProcessFile();
+
+	ASSERT_GT(fileProcessor->GetGear().size(), 1);
+}

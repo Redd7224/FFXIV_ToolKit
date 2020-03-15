@@ -17,6 +17,28 @@ void FileProcessor::SetData(string data)
 	this->data = data;
 }
 
+void FileProcessor::SetFile(string filePath)
+{
+	this->path = filePath;
+}
+
+void FileProcessor::ProcessFile()
+{
+	ifstream inFile;
+	inFile.open(this->path);
+
+	if (inFile.is_open())
+	{
+		while (inFile)
+		{
+			string line;
+			getline(inFile, line);
+			this->data.append(line + '\n');
+		}
+	}
+	CreateListOfGear(this->data);
+}
+
 list<string> FileProcessor::GetGear()
 {
 	return CreateListOfGear(this->data);
