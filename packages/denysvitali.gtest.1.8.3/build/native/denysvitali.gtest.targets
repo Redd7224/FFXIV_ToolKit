@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="denysvitali_googletest_init">
+<PropertyGroup Label="Debug and static and RuntimeLibraryNull" Condition="( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 ) And '$(Linkage-denysvitali-googletest.ToLower())' == 'static' And ('$(RuntimeLibrary)' == '')">
+    <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+  </PropertyGroup>
+  <PropertyGroup Label="Release and static and RuntimeLibraryNull" Condition="( $(Configuration.ToLower().IndexOf('debug')) == -1 ) And '$(Linkage-denysvitali-googletest.ToLower())' == 'static' And ('$(RuntimeLibrary)' == '')">
+    <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+  </PropertyGroup>
+  <PropertyGroup Label="Debug and ltcg and RuntimeLibraryNull" Condition="( $(Configuration.ToLower().IndexOf('debug')) &gt; -1 ) And '$(Linkage-denysvitali-googletest.ToLower())' == 'ltcg' And ('$(RuntimeLibrary)' == '')">
+    <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+  </PropertyGroup>
+  <PropertyGroup Label="Release and ltcg and RuntimeLibraryNull" Condition="( $(Configuration.ToLower().IndexOf('debug')) == -1 ) And '$(Linkage-denysvitali-googletest.ToLower())' == 'ltcg' And ('$(RuntimeLibrary)' == '')">
+    <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+  </PropertyGroup>
+  <PropertyGroup Label="Default initializers for properties">
+    <Linkage-denysvitali-googletest Condition="'$(Linkage-denysvitali-googletest)' == ''">dynamic</Linkage-denysvitali-googletest>
+    <CallingConvention-denysvitali-googletest Condition="'$(CallingConvention-denysvitali-googletest)' == ''">cdecl</CallingConvention-denysvitali-googletest>
+  </PropertyGroup>
+  <PropertyGroup Label="Default initializers for properties">
+    <Linkage-denysvitali_googletest Condition="'$(Linkage-denysvitali_googletest)' == ''">dynamic</Linkage-denysvitali_googletest>
+    <CallingConvention-denysvitali_googletest Condition="'$(CallingConvention-denysvitali_googletest)' == ''">cdecl</CallingConvention-denysvitali_googletest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+		<AdditionalDependencies>$(MSBuildThisFileDirectory)\lib\x64\Release\gtest.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)\lib\x64\Debug\gtest.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)\lib\Win32\Release\gtest.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Link>
+      <AdditionalDependencies>$(MSBuildThisFileDirectory)\lib\Win32\Debug\gtest.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  
+  
+  <ItemDefinitionGroup Label="static" Condition="'$(Linkage-denysvitali-googletest.ToLower())' == 'static'">
+    <ClCompile>
+      <RuntimeLibrary>$(RuntimeLibrary)</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Label="ltcg" Condition="'$(Linkage-denysvitali-googletest.ToLower())' == 'ltcg'">
+    <ClCompile>
+      <RuntimeLibrary>$(RuntimeLibrary)</RuntimeLibrary>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)\default-propertiesui.xml" />
+  </ItemGroup>
+  <UsingTask TaskName="denysvitali_googletest_Contains" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.lib" TaskFactory="CodeTaskFactory">
+    <ParameterGroup>
+      <Text Output="false" ParameterType="System.String" />
+      <Library Output="false" Required="true" ParameterType="System.String" />
+      <Value Output="false" Required="true" ParameterType="System.String" />
+      <Result Output="true" ParameterType="System.String" />
+    </ParameterGroup>
+    <Task>
+      <Code>Result = ((Text ?? "").Split(';').Contains(Library) ) ? Value : String.Empty;</Code>
+    </Task>
+  </UsingTask>
+  <Target Name="denysvitali_googletest_init">
+    <denysvitali_googletest_Contains Text="Linkage-dynamic" Library="denysvitali_googletest" Value="dynamic" Condition="'$(Linkage-denysvitali_googletest)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-denysvitali_googletest" />
+    </denysvitali_googletest_Contains>
+    <denysvitali_googletest_Contains Text="Linkage-static" Library="denysvitali_googletest" Value="static" Condition="'$(Linkage-denysvitali_googletest)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-denysvitali_googletest" />
+    </denysvitali_googletest_Contains>
+    <denysvitali_googletest_Contains Text="Linkage-ltcg" Library="denysvitali_googletest" Value="ltcg" Condition="'$(Linkage-denysvitali_googletest)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-denysvitali_googletest" />
+    </denysvitali_googletest_Contains>
+    <denysvitali_googletest_Contains Text="Linkage-sxs" Library="denysvitali_googletest" Value="sxs" Condition="'$(Linkage-denysvitali_googletest)'==''">
+      <Output TaskParameter="Result" PropertyName="Linkage-denysvitali_googletest" />
+    </denysvitali_googletest_Contains>
+    <denysvitali_googletest_Contains Text="CallingConvention-cdecl" Library="denysvitali_googletest" Value="cdecl" Condition="'$(CallingConvention-denysvitali_googletest)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-denysvitali_googletest" />
+    </denysvitali_googletest_Contains>
+    <denysvitali_googletest_Contains Text="CallingConvention-stdcall" Library="denysvitali_googletest" Value="stdcall" Condition="'$(CallingConvention-denysvitali_googletest)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-denysvitali_googletest" />
+    </denysvitali_googletest_Contains>
+    <denysvitali_googletest_Contains Text="CallingConvention-fastcall" Library="denysvitali_googletest" Value="fastcall" Condition="'$(CallingConvention-denysvitali_googletest)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-denysvitali_googletest" />
+    </denysvitali_googletest_Contains>
+    <denysvitali_googletest_Contains Text="CallingConvention-thiscall" Library="denysvitali_googletest" Value="thiscall" Condition="'$(CallingConvention-denysvitali_googletest)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-denysvitali_googletest" />
+    </denysvitali_googletest_Contains>
+    <denysvitali_googletest_Contains Text="CallingConvention-clrcall" Library="denysvitali_googletest" Value="clrcall" Condition="'$(CallingConvention-denysvitali_googletest)'==''">
+      <Output TaskParameter="Result" PropertyName="CallingConvention-denysvitali_googletest" />
+    </denysvitali_googletest_Contains>
+  </Target>
+</Project>

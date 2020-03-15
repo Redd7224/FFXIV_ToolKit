@@ -8,6 +8,8 @@
 */[Bb]in/
 */[Oo]bj/
 
+*/x64/*
+
 */*.vcxproj*
 
 # Prerequisites
